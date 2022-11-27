@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class KakaoBank {
 
+    private int balance;
     public KakaoBank(){
 
         int money = 0;
         Scanner sc = new Scanner(System.in);
+
 
         while(true) {
             System.out.println("***********************.");
@@ -70,6 +72,10 @@ public class KakaoBank {
             }
 
         }
+    }
+
+    public void deposit(int amount){
+        this.balance += amount;
     }
 
 }
