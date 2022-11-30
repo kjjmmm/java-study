@@ -7,8 +7,46 @@ public class KakaoBank {
     private int balance;
     private String password;
     private String name;
+    private String account;
 
     public KakaoBank(){
+    }
+    public KakaoBank(String name,String account, String password){
+        this.name=name;
+        this.account=account;
+        this.password=password;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public void deposit(int amount){
