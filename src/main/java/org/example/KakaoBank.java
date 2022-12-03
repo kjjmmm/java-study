@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class KakaoBank {
@@ -66,4 +67,31 @@ public class KakaoBank {
     public int retainAmount(){
         return balance;
     }
+
+    public void printAccounts(ArrayList<KakaoBank> accounts) {
+
+        for(int i=0; i<accounts.size(); i++){
+            String p_name = accounts.get(i).getName();
+            String p_account = accounts.get(i).getAccount();
+            String p_password = accounts.get(i).getPassword();
+            int p_balance = accounts.get(i).getBalance();
+            System.out.println("이름 | 계좌번호 | 비밀번호 | 잔액");
+            System.out.println(p_name+" | "+p_account+" | "+p_password+" | "+p_balance);
+        }
+    }
+    public boolean isExistAccount(ArrayList<KakaoBank> accounts){
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("계좌번호를 입력해 주세요.");
+        String account = sc.next();
+        for(int i=0; i<accounts.size(); i++){
+            if(account.equals(accounts.get(i).getAccount())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

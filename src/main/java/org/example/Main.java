@@ -29,6 +29,12 @@ public class Main {
 
             switch (selection) {
                 case 1: System.out.println("입금을 선택하였습니다.");
+
+                        if(bank.isExistAccount(accounts)==false){
+                            System.out.println("없는 계좌번호입니다.");
+                            break;
+                        }
+
                         System.out.println("얼마를 넣으시겠습니까?.");
                         int deposit = sc.nextInt();
                         bank.deposit(deposit);
@@ -61,16 +67,7 @@ public class Main {
                         System.out.println("계좌를 생성 했습니다.");
                         break;
                 case 5: System.out.println("계좌 리스트를 출력합니다.");
-
-                        for(int i=0; i<accounts.size(); i++){
-                            String p_name = accounts.get(i).getName();
-                            String p_account = accounts.get(i).getAccount();
-                            String p_password = accounts.get(i).getPassword();
-                            int p_balance = accounts.get(i).getBalance();
-
-                            System.out.println(p_name+" | "+p_account+" | "+p_password+" | "+p_balance);
-                        }
-
+                        bank.printAccounts(accounts);
 
                 case 6: System.out.println("시스템을 종료합니다.");
                         System.out.println("안녕히 가십시오.");
