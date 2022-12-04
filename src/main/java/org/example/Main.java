@@ -30,28 +30,56 @@ public class Main {
             switch (selection) {
                 case 1: System.out.println("입금을 선택하였습니다.");
 
-                        if(bank.isExistAccount(accounts)==false){
-                            System.out.println("없는 계좌번호입니다.");
+                        String accountForDeposit = bank.inputAccount();
+                        if(bank.isExistAccount(accounts,accountForDeposit)==null){
+                            System.out.println("없는 계좌번호 입니다. 메뉴로 돌아갑니다.");
                             break;
                         }
 
-                        System.out.println("얼마를 넣으시겠습니까?.");
+                        System.out.println("얼마를 넣으시겠습니까?");
                         int deposit = sc.nextInt();
-                        bank.deposit(deposit);
-                        System.out.println(deposit+"원을 입금하였습니다.");
-                        System.out.println("현재 보유 금액은 "+bank.retainAmount()+"원 입니다.");
+
+                        bank.deposit(accounts, accountForDeposit, deposit);
                         break;
 
                 case 2: System.out.println("출금을 선택하였습니다.");
+
+                        String accountForWithdraw = bank.inputAccount();
+                        if(bank.isExistAccount(accounts,accountForWithdraw)==null){
+                            System.out.println("없는 계좌번호 입니다. 메뉴로 돌아갑니다.");
+                            break;
+                        }
+
+                        System.out.println("계좌 비밀번호를 입력해 주세요.");
+                        int passwordForCheckWithdraw = sc.nextInt();
+                        boolean checkPasswordForWithdraw = bank.checkAccountPassword(accounts, accountForWithdraw, passwordForCheckWithdraw);
+
+                        if(checkPasswordForWithdraw==false){
+                            System.out.println("비밀번호가 다릅니다.");
+                            break;
+                        }
+
                         System.out.println("얼마를 출금하시겠습니까?.");
                         int withdraw = sc.nextInt();
-                        System.out.println(withdraw+"원을 출금하였습니다.");
-                        bank.withdraw(withdraw);
-                        System.out.println("현재 보유 금액은 "+bank.retainAmount()+"원 입니다.");
+
+                        bank.withdraw(accounts, accountForWithdraw, withdraw);
                         break;
 
                 case 3: System.out.println("잔액 확인을 선택하였습니다.");
-                        System.out.println("현재 보유 금액은 "+bank.retainAmount()+"원 입니다.");
+                        String accountForCheckBalance = bank.inputAccount();
+                        if(bank.isExistAccount(accounts,accountForCheckBalance)==null){
+                            System.out.println("없는 계좌번호 입니다. 메뉴로 돌아갑니다.");
+                            break;
+                        }
+                        System.out.println("계좌 비밀번호를 입력해 주세요.");
+                        int passwordForCheckBalance = sc.nextInt();
+                        boolean checkPasswordForBalance = bank.checkAccountPassword(accounts, accountForCheckBalance, passwordForCheckBalance);
+
+                        if(checkPasswordForBalance==false){
+                            System.out.println("비밀번호가 다릅니다.");
+                            break;
+                        }
+                        bank.checkBalance(accounts, accountForCheckBalance);
                         break;
 
                 case 4: System.out.println("계좌 개설을 선택하셨습니다.");
@@ -60,14 +88,16 @@ public class Main {
                         System.out.println("계좌번호로 사용할 전화번호를 입력해 주세요.");
                         String phoneNumber = sc.next();
                         System.out.println("비밀번호를 입력해 주세요.");
-                        String password = sc.next();
+                        int password2 = sc.nextInt();
 
-                        KakaoBank account = new KakaoBank(name,phoneNumber,password);
+                        KakaoBank account = new KakaoBank(name,phoneNumber,password2);
                         accounts.add(account);
                         System.out.println("계좌를 생성 했습니다.");
                         break;
+
                 case 5: System.out.println("계좌 리스트를 출력합니다.");
                         bank.printAccounts(accounts);
+                        break;
 
                 case 6: System.out.println("시스템을 종료합니다.");
                         System.out.println("안녕히 가십시오.");
