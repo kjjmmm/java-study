@@ -1,9 +1,11 @@
 package org.example;
 
+import org.example.service.KakaoBank;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Atm {
     public static void main(String[] args) {
 
         ArrayList<KakaoBank> accounts = new ArrayList<KakaoBank>();
