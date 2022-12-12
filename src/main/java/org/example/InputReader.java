@@ -8,4 +8,8 @@ public class InputReader {
     public static String readLine(){
         return sc.next();
     }
+
+    public static int readInt(){
+        return sc.nextInt();
+    }
 }

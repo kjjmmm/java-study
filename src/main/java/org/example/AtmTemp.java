@@ -11,9 +11,7 @@ public class AtmTemp {
     private static boolean active = true;
     public static void main(String[] args) {
 
-        KakaoBankTemp bank = null;
-        bank = new KakaoBankTemp(new BankAccountRepository(),new UserAssetRepository());
-
+        KakaoBankTemp bank = new KakaoBankTemp(new BankAccountRepository(),new UserAssetRepository());
 
         /*
             1. 사용자의 커맨드를 처리하는 일 -> 은행에게 넘겨준다
@@ -58,7 +56,7 @@ public class AtmTemp {
     }
 
     public static AtmCommand getCommand(){
-        int commandId = sc.nextInt();
+        int commandId = InputReader.readInt();
         return AtmCommand.getCommandById(commandId);
     }
 }

@@ -43,14 +43,14 @@ public class KakaoBankTemp {
         System.out.println("이름을 입력해주세요.");
         String name = InputReader.readLine();
         System.out.println("비밀번호을 입력해주세요.");
-        String pw = AtmTemp.sc.next();
+        String pw = InputReader.readLine();
         BankAccount newAccount = new BankAccount(name, pw);
         bankAccountRepository.save(newAccount);
     }
 
     public BankAccount searchByName() {
         System.out.println("이름을 입력해주세요.");
-        String name = AtmTemp.sc.next();
+        String name = InputReader.readLine();
         return bankAccountRepository.findByName(name);
     }
 }
